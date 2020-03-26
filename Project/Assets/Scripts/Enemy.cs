@@ -7,11 +7,17 @@ public class Enemy : MonoBehaviour
 
     public float health = 100f;
     public GameObject deathEffect;
+    public Animator animator;
 
     // Update is called once per frame
     public void TakeDamage(float damage)
     {
         health -= damage;
+
+        if(health <= 50)
+        {
+            animator.SetBool("isWeak", true);
+        }
 
         if(health <= 0)
         {
