@@ -14,11 +14,6 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        if(health <= 50)
-        {
-            animator.SetBool("isWeak", true);
-        }
-
         if(health <= 0)
         {
             Die();

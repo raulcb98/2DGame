@@ -35,5 +35,10 @@ namespace Pathfinding {
 		void Update () {
 			if (target != null && ai != null) ai.destination = target.position;
 		}
+
+        public void deactivate()
+        {
+            OnDisable();
+        }
 	}
 }

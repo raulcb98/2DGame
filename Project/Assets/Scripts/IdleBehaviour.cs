@@ -7,6 +7,7 @@ public class IdleBehaviour : StateMachineBehaviour
 
     Transform player;
     Rigidbody2D rb;
+
     public float speed = 2.5f;
     int jumpTimes = 0;
 
