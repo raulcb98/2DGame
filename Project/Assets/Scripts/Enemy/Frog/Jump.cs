@@ -22,7 +22,7 @@ public class Jump : MonoBehaviour
     bool jumpDirection = false;
 
     public Sprite sprite;
-    SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     void Awake()
     {

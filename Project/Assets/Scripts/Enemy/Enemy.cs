@@ -26,13 +26,17 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public float getHealth() {
+        return health;
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         Player_Health player = collision.GetComponentInChildren<Player_Health>();
 
         if (player != null)
-        {
-            player.TakeDamage(10);
+        {            
+            player.TakeDamage(20);
         }
 
         //Instantiate(bulletImpactAnimation, transform.position, Quaternion.identity);
