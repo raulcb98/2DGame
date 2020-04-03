@@ -25,4 +25,18 @@ public class Enemy : MonoBehaviour
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player_Health player = collision.GetComponentInChildren<Player_Health>();
+
+        if (player != null)
+        {
+            player.TakeDamage(10);
+        }
+
+        //Instantiate(bulletImpactAnimation, transform.position, Quaternion.identity);
+
+        //Destroy(gameObject);
+    }
 }
