@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     // Public attributes
     public int Max_Health = 100;
     public int Current_Health;
-    public HealthBar healthBar;
 
     // Private attributes
     Game_Manager gameManager;
@@ -20,15 +19,13 @@ public class Player : MonoBehaviour
     void Start()
     {
         Current_Health = Max_Health;
-        healthBar.SetMaxHealth(Max_Health);
-
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_Manager>();
     }
 
     public void TakeDamage(int damage)
     {
         Current_Health -= damage;
-        healthBar.SetHealth(Current_Health);
+        gameManager.SetHealth(Current_Health);
 
         if(Current_Health <= 0)
         {
@@ -39,9 +36,7 @@ public class Player : MonoBehaviour
     public void Takehealth(int health)
     {
         Current_Health += health;
-        healthBar.SetHealth(Current_Health);
+        gameManager.SetHealth(Current_Health);
 
     }
-
-
 }

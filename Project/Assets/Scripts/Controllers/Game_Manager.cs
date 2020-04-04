@@ -8,31 +8,25 @@ using UnityEngine.UI;
 /// </summary>
 public class Game_Manager : MonoBehaviour
 {
-    // Public variables
-    public Text pointsText;
-    public Text timeText;
-
     // Private variables
-    int points = 0;
-    float time = 0;
+    Player player;
+    //Timer timer;
+    Pointer pointer;
+    HealthBar healthBar;
     bool gameHasEnded = false;
 
 
     // Start is called before the first frame update 
     void Start()
     {
-        // Initialize point text and score text to 0
-        pointsText.text = points.ToString();
-        timeText.text = time.ToString();
-    }
+        GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        //timer = mainCamera.GetComponentInChildren<Timer>();
+        pointer = mainCamera.GetComponentInChildren<Pointer>();
+        healthBar = mainCamera.GetComponentInChildren<HealthBar>();
 
-    // Update is called once per frame
-    void Update()
-    { 
-        // Update time
-        time = time + 1 * Time.deltaTime;
-        timeText.text = time.ToString("f0");
+        healthBar.SetMaxHealth(player.Max_Health);
     }
 
 
@@ -54,10 +48,14 @@ public class Game_Manager : MonoBehaviour
     }
 
 
-    // Update score by one
-    public void IncreasePoints()
+    // Update score pointer
+    public void IncreasePointer(int increment)
     {
-        points++;
-        pointsText.text = points.ToString();
+        pointer.IncreasePointer(increment);
+    }
+
+    public void SetHealth(int increment)
+    {
+        healthBar.SetHealth(increment);
     }
 }

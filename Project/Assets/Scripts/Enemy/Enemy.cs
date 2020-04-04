@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     // Private attributes
     Game_Manager manager;
+    int enemyDeathReward = 1;
 
 
     // Start is called at first frame
@@ -38,7 +39,7 @@ public class Enemy : MonoBehaviour
     // Destroy the enemy
     void Die()
     {
-        manager.IncreasePoints();
+        manager.IncreasePointer(enemyDeathReward);
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
