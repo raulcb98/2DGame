@@ -20,10 +20,10 @@ public class Pointer : MonoBehaviour
         pointerText.text = "0";
     }
 
-    // Increase pointer score
-    public void IncreasePointer(int increment)
+    // Set points text value
+    public void setPoints(int points) 
     {
-        points += increment;
         pointerText.text = points.ToString("f0");
     }
+
 }

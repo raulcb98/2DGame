@@ -10,9 +10,14 @@ public class Game_Manager : MonoBehaviour
 {
     // Private variables
     Player player;
-    //Timer timer;
+
+    Timer timer;
     Pointer pointer;
     HealthBar healthBar;
+
+    private float time = 0;
+    private int points = 0;
+
     bool gameHasEnded = false;
 
 
@@ -22,13 +27,20 @@ public class Game_Manager : MonoBehaviour
         GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        //timer = mainCamera.GetComponentInChildren<Timer>();
+
+        timer = mainCamera.GetComponentInChildren<Timer>();
         pointer = mainCamera.GetComponentInChildren<Pointer>();
         healthBar = mainCamera.GetComponentInChildren<HealthBar>();
 
         healthBar.SetMaxHealth(player.Max_Health);
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        time = time + 1 * Time.deltaTime;
+        timer.SetTime(time);
+    }
 
     // Finish the game
     public void EndGame()
@@ -51,7 +63,8 @@ public class Game_Manager : MonoBehaviour
     // Update score pointer
     public void IncreasePointer(int increment)
     {
-        pointer.IncreasePointer(increment);
+        points += increment;
+        pointer.setPoints(points);
     }
 
     public void SetHealth(int increment)

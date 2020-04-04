@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     // Private attributes
-    private float time = 0;
     private Text timeText;
 
     
@@ -17,21 +16,14 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timeText = GetComponent<Text>();
+        timeText.text = "0";
     }
 
 
-    // Update is called once per frame
-    void Update()
+    // Set time text value
+    public void SetTime(float time)
     {
-        // Update time
-        time = time + 1 * Time.deltaTime;
         timeText.text = time.ToString("f0");
     }
 
-
-    // Return current timer value
-    public float getTime()
-    {
-        return time;
-    }
 }
