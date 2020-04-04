@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
     // Public attributes
     public float health = 100f;
     public GameObject deathEffect;
-    public Animator animator;
 
     // Private attributes
     Game_Manager manager;

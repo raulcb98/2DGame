@@ -7,9 +7,16 @@ using UnityEngine;
 /// </summary>
 public class Enemy_Orientation : MonoBehaviour
 {
-    // Public attributes
-    public Transform player;
-    public bool isFlipped = false;
+    // Private attributes
+    Transform player;
+    bool isFlipped = false;
+
+
+    // Start is called once at first frame
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;    
+    }
 
 
     // Change sprite orientation to look at player

@@ -2,29 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// Defines player attributes.
+/// </summary>
 public class Player : MonoBehaviour
 {
-    public GameObject deathEffect;
-
+    // Public attributes
     public int Max_Health = 100;
     public int Current_Health;
-
-
-
     public HealthBar healthBar;
 
-    public Game_Manager gameManager;
+    // Private attributes
+    Game_Manager gameManager;
 
 
-
-    
     // Start is called before the first frame update
     void Start()
     {
         Current_Health = Max_Health;
         healthBar.SetMaxHealth(Max_Health);
-        
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_Manager>();
     }
 
     public void TakeDamage(int damage)
@@ -34,10 +32,8 @@ public class Player : MonoBehaviour
 
         if(Current_Health <= 0)
         {
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
             gameManager.EndGame();
         }
-
     }
 
     public void Takehealth(int health)

@@ -2,16 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Interface to control the player. It is necessary to have an Animator
+/// and a CharacterController2D script.
+/// </summary>
 public class PlayerMovement : MonoBehaviour {
 
-	public CharacterController2D controller;
-	public Animator animator;
-
+	// Public attributes
 	public float runSpeed = 40f;
+
+	// Private attributes
+	CharacterController2D controller;
+	Animator animator;
 
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool crouch = false;
+
+
+	// Start is called once at first frame
+	void Start()
+	{
+		animator = GetComponent<Animator>();
+		controller = GetComponent<CharacterController2D>();
+	}
 
 	// Update is called once per frame
 	void Update () {
