@@ -32,15 +32,11 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Player_Health player = collision.GetComponentInChildren<Player_Health>();
+        Player player = collision.GetComponentInChildren<Player>();
 
         if (player != null)
         {            
             player.TakeDamage(20);
         }
-
-        //Instantiate(bulletImpactAnimation, transform.position, Quaternion.identity);
-
-        //Destroy(gameObject);
     }
 }

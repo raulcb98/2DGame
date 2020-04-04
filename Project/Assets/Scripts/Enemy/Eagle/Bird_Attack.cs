@@ -22,20 +22,13 @@ public class Bird_Attack : StateMachineBehaviour
     {
         float distance = Mathf.Abs(player.position.x - rb.position.x);
 
-        animator.GetComponent<Rat>().LookAtPlayer();
+        animator.GetComponent<EnemyOrientation>().LookAtPlayer();
 
         animator.GetComponent<Pathfinding.AIDestinationSetter>().target = player;
 
         if (distance > dangerDistance)
         {
             animator.SetBool("isNear", false);
-
         }
     }
-
-    //// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-
-    //}
 }

@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Player_Health : MonoBehaviour
+
+public class Player : MonoBehaviour
 {
     public GameObject deathEffect;
 
     public int Max_Health = 100;
     public int Current_Health;
 
-    public Text pointsText;
+
 
     public HealthBar healthBar;
 
     public Game_Manager gameManager;
 
-    private int points = 0;
+
 
     
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class Player_Health : MonoBehaviour
     {
         Current_Health = Max_Health;
         healthBar.SetMaxHealth(Max_Health);
-        pointsText.text = points.ToString();
+        
     }
 
     public void TakeDamage(int damage)
@@ -47,9 +47,5 @@ public class Player_Health : MonoBehaviour
 
     }
 
-    public void IncreasePoints()
-    {
-        points++;
-        pointsText.text = points.ToString();
-    }
+
 }

@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public float damage = 40f;
     public GameObject bulletImpactAnimation;
+    GameObject manager;
 
     int distanceDestroy = 12;
 
@@ -20,7 +21,7 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = transform.right * speed;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        manager = GameObject.FindGameObjectWithTag("GameManager");
     }
 
     void Update()
@@ -39,8 +40,7 @@ public class Bullet : MonoBehaviour
         {
             if(enemy.getHealth() - damage <= 0)
             {
-                Player_Health points = player.GetComponent<Player_Health>();
-                points.IncreasePoints();
+                manager.GetComponent<Game_Manager>().IncreasePoints();
             }
 
             enemy.TakeDamage(damage);

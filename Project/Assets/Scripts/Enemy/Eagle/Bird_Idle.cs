@@ -22,7 +22,7 @@ public class Bird_Idle : StateMachineBehaviour
     {
         float distance = Mathf.Abs(player.position.x - rb.position.x);
 
-        animator.GetComponent<Rat>().LookAtPlayer();
+        animator.GetComponent<EnemyOrientation>().LookAtPlayer();
 
         animator.GetComponent<Pathfinding.AIDestinationSetter>().target = animator.transform;
 

@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Run : StateMachineBehaviour
+public class RatIdle : StateMachineBehaviour
 {
     Transform player;
     Rigidbody2D rb;
 
-    public float speed = 2.5f;
-    public float dangerDistance = 5f;
-
+    public float dangerDistance = 5f; 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("isNear", true);
+        animator.SetBool("isNear", false);
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = animator.GetComponent<Rigidbody2D>();
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -24,22 +21,26 @@ public class Run : StateMachineBehaviour
     {
         float distance = Mathf.Abs(player.position.x - rb.position.x);
 
-        if (distance > dangerDistance)
+        if(distance < dangerDistance)
         {
-            animator.SetBool("isNear", false);
+
+            float valor = Random.Range(0.0f, 1.0f);
+
+            if (valor == 0.5f)
+            {
+                valor += 1f;
+            }
+
+            animator.SetFloat("Random", valor);
+
+            animator.SetBool("isNear", true);
+
         }
-
-        animator.GetComponent<Rat>().NoLookAtPlayer();
-
-        Vector2 target = new Vector2(player.position.x, rb.position.y);
-        Vector2 newPos = Vector2.MoveTowards(rb.position, target, -speed * Time.fixedDeltaTime);
-        rb.MovePosition(newPos);
-
     }
 
     //// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-
+        
     //}
 }

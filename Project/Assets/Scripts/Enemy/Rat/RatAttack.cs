@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : StateMachineBehaviour
+public class RatAttack : StateMachineBehaviour
 {
     Transform player;
     Rigidbody2D rb;
@@ -28,7 +28,7 @@ public class Attack : StateMachineBehaviour
             animator.SetBool("isNear", false);
         }
 
-        animator.GetComponent<Rat>().LookAtPlayer();
+        animator.GetComponent<EnemyOrientation>().LookAtPlayer();
 
         Vector2 target = new Vector2(player.position.x, rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);

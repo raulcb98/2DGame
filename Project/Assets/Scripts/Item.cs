@@ -7,26 +7,13 @@ public class Item : MonoBehaviour
     public int puntosGanados = 5;
 
     public GameObject deathEffect;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Game_Manager manager;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Player_Health player = collision.GetComponentInChildren<Player_Health>();
-
         if (collision.tag == "Player")
         {
-            player.IncreasePoints();
+            manager.IncreasePoints();
             Destroy(gameObject);
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
