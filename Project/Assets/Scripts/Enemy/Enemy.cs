@@ -2,14 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{
 
+/// <summary>
+/// Define the basic attributes of an enemy.
+/// </summary>
+public class Enemy : MonoBehaviour
+{ 
+    // Public attributes
     public float health = 100f;
     public GameObject deathEffect;
     public Animator animator;
 
-    // Update is called once per frame
+    // Private attributes
+    Game_Manager manager;
+
+
+    // Start is called at first frame
+    void Start()
+    {
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_Manager>();
+    }
+
+
+    // Decrease enemy health
     public void TakeDamage(float damage)
     {
         health -= damage;
@@ -19,17 +34,18 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
+    
 
+    // Destroy the enemy
     void Die()
     {
+        manager.IncreasePoints();
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
-    public float getHealth() {
-        return health;
-    }
 
+    // This method is called when a bullet impact to the enemy
     void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponentInChildren<Player>();

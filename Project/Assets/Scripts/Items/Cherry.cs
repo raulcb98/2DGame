@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cherry : MonoBehaviour
+/// <summary>
+/// Defines a fruit to recover health.
+/// </summary>
+public class Cherry : MonoBehaviour
 {
-    public GameObject deathEffect;
+    // Public attributes
+    public int healthValue = 10;
 
+
+    // This method is called when the player collide with the fruit.
     void OnTriggerEnter2D(Collider2D collision)
     {
-
         Player player = collision.GetComponentInChildren<Player>();
 
         if (collision.tag == "Player" && player != null)
         {
             player.Takehealth(10);
-            Destroy(gameObject);
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
     }
 }

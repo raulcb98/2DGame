@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Defines the eagle behaviour when in the state idle.
+/// </summary>
 public class Bird_Idle : StateMachineBehaviour
 {
+    // Public attributes
+    public float dangerDistance = 5f;
+
+    // Private attributes
     Transform player;
     Rigidbody2D rb;
 
-    public float dangerDistance = 5f;
+    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -20,17 +27,17 @@ public class Bird_Idle : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateinfo, int layerIndex)
     {
+        // Calculate distance
         float distance = Mathf.Abs(player.position.x - rb.position.x);
 
-        animator.GetComponent<EnemyOrientation>().LookAtPlayer();
-
+        // If player isn't under distance, don't move
+        animator.GetComponent<Enemy_Orientation>().LookAtPlayer();
         animator.GetComponent<Pathfinding.AIDestinationSetter>().target = animator.transform;
 
-
+        // If player is under distance, change state
         if (distance < dangerDistance)
         {
             animator.SetBool("isNear", true);
-
         }
     }
 

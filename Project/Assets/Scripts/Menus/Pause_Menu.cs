@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+/// <summary>
+/// Define the logic of the pause menu.
+/// </summary>
+public class Pause_Menu : MonoBehaviour
 {
+    // Public attributes.
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
 
-    // Update is called once per frame
+
+    // Update is called once per frame.
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -23,13 +28,17 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+
+    // Resume the game.
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
+    
 
+    // Pause the game.
     void Pause()
     {
         pauseMenuUI.SetActive(true);

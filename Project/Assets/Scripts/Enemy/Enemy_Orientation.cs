@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyOrientation : MonoBehaviour
+/// <summary>
+/// Control enemy sprite orientation.
+/// </summary>
+public class Enemy_Orientation : MonoBehaviour
 {
+    // Public attributes
     public Transform player;
-
     public bool isFlipped = false;
 
+
+    // Change sprite orientation to look at player
     public void LookAtPlayer()
     {
         Vector3 flipped = transform.localScale;
@@ -27,6 +32,8 @@ public class EnemyOrientation : MonoBehaviour
         }
     }
 
+
+    // Change sprite orientation to not look at player
     public void NoLookAtPlayer()
     {
         Vector3 flipped = transform.localScale;

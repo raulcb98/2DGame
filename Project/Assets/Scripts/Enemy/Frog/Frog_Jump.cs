@@ -2,58 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Defines the frog behaviour in the state jump.
+/// </summary>
 public class Frog_Jump : MonoBehaviour
 {
+    // Public attributes
     [Range(1, 10)]
     public float jumpVelocity = 5;
-
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     
+    // Private attributes
     Rigidbody2D rb;
     Animator animator;
 
-    const bool RIGHT = true;
-    const bool LEFT = false;
-
     float jumpSleep = 1f;
     float nextJumpTime = 0f;
-
     bool jumpDirection = false;
 
-    public Sprite sprite;
-    private SpriteRenderer spriteRenderer;
 
+    // Awakeis called once when the object is created
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        float x;
-
+        // Jump left and right alternatively
         if (jumpDirection == false)
         {
-            x = -1;
+            JumpAction(-1);
         }
         else
         {
-            x = 1;
+            JumpAction(1);
         }
-                
-        if (x != 0)
-        {
-            JumpAction(x); 
-        }
+
         jumpPhysics();
         jumpAnimation();
     }
 
 
+    // Control jump frecuence
     public void JumpAction(float axis)
     {
         if (Time.time >= nextJumpTime)
@@ -66,8 +61,10 @@ public class Frog_Jump : MonoBehaviour
     }
 
 
+    // Control jump physics
     void jumpPhysics()
     {
+        // Apply physics
         if (rb.velocity.y < 0)
         {
             animator.SetBool("falling", true);
@@ -78,15 +75,18 @@ public class Frog_Jump : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
+        // To avoid slide
         if(rb.velocity.y == 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x/2,0);
+            rb.velocity = new Vector2(rb.velocity.x/4,0);
         }
-
     }
 
+
+    // Control jump animation
     void jumpAnimation()
     {
+        // Frog orientation
         if(rb.velocity.x > 0)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
@@ -96,6 +96,7 @@ public class Frog_Jump : MonoBehaviour
         }
 
         
+        // Update animation state machine
         if (rb.velocity.y != 0)
         {
             animator.SetBool("jumping", true);

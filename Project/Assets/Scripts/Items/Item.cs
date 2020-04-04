@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Defines the behaviour of a basic item.
+/// </summary>
 public class Item : MonoBehaviour
 {
-    public int puntosGanados = 5;
-
+    // Public attributes
     public GameObject deathEffect;
-    public Game_Manager manager;
 
+
+    // Destroy the object with an animation
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            manager.IncreasePoints();
-            Destroy(gameObject);
             Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
