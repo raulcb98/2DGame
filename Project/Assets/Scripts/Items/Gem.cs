@@ -14,6 +14,7 @@ public class Gem : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            FindObjectOfType<AudioManager>().Play("CoinSound");
             GameObject manager = GameObject.FindGameObjectWithTag("GameManager");
             manager.GetComponent<Game_Manager>().IncreasePointer(gemReward);
         }

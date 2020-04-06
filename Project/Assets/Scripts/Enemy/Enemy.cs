@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        if(health <= 0)
+        if (health <= 0)
         {
             Die();
         }
@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         manager.IncreasePointer(enemyDeathReward);
+        FindObjectOfType<AudioManager>().Play("DeathEnemy");
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

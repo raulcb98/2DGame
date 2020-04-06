@@ -32,6 +32,7 @@ public class Pause_Menu : MonoBehaviour
     // Resume the game.
     public void Resume()
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -49,6 +50,7 @@ public class Pause_Menu : MonoBehaviour
 
     public void LoadMenu()
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }

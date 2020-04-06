@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		animator = GetComponent<Animator>();
 		controller = GetComponent<CharacterController2D>();
+
 	}
 
 	// Update is called once per frame
@@ -37,7 +38,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetButtonDown("Jump"))
 		{
-			jump = true;
+            FindObjectOfType<AudioManager>().Play("JumpSound");
+            jump = true;
 			animator.SetBool("IsJumping", true);
 		}
 

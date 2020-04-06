@@ -18,6 +18,7 @@ public class Cherry : MonoBehaviour
 
         if (collision.tag == "Player" && player != null)
         {
+            FindObjectOfType<AudioManager>().Play("CherrySound");
             player.Takehealth(10);
         }
     }

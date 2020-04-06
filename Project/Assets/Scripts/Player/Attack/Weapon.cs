@@ -25,6 +25,7 @@ public class Weapon : MonoBehaviour
     // Instantiate a bullet if firepoint position.
     void Shoot()
     {
+        FindObjectOfType<AudioManager>().Play("BulletSound");
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }
