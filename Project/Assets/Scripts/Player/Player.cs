@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
 
         healthBar = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<HealthBar>();
         pointer = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<Pointer>();
+
+        healthBar.SetHealth(currentHealth);
+        pointer.SetPoints(points);
     }
     
     public void TakeHealth(int health)
@@ -78,6 +81,7 @@ public class Player : MonoBehaviour
         if(playerData != null)
         {
             currentHealth = playerData.currentHealth;
+            points = playerData.points;
 
             Vector3 position;
             position.x = playerData.position[0];

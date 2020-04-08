@@ -7,6 +7,7 @@ public class PlayerData
 {
     // Player data
     public int currentHealth;
+    public int points;
     public float[] position;
 
     public PlayerData()
@@ -16,6 +17,7 @@ public class PlayerData
         if (player != null)
         {
             currentHealth = player.currentHealth;
+            points = player.points;
 
             position = new float[3];
             position[0] = player.transform.position.x;

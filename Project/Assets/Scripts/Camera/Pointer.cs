@@ -9,16 +9,8 @@ using UnityEngine.UI;
 public class Pointer : MonoBehaviour
 {
     // Private attributes
-    private Text pointerText;
+    public Text pointerText;
     private int points;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        pointerText = GetComponent<Text>();
-        pointerText.text = "0";
-    }
 
     // Set points text value
     public void SetPoints(int points) 
@@ -26,5 +18,4 @@ public class Pointer : MonoBehaviour
         this.points = points;
         pointerText.text = this.points.ToString("f0");
     }
-
 }
