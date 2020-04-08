@@ -32,7 +32,9 @@ public class Game_Manager : MonoBehaviour
         pointer = mainCamera.GetComponentInChildren<Pointer>();
         healthBar = mainCamera.GetComponentInChildren<HealthBar>();
 
-        healthBar.SetMaxHealth(player.Max_Health);
+        healthBar.SetMaxHealth(player.maxHealth);
+
+        LoadData();
     }
 
     // Update is called once per frame
@@ -70,5 +72,19 @@ public class Game_Manager : MonoBehaviour
     public void SetHealth(int increment)
     {
         healthBar.SetHealth(increment);
+    }
+
+    public int GetGemsCounter()
+    {
+        return points;
+    }
+
+    private void LoadData()
+    {
+        GameData gameData = SaveSystem.LoadGame();
+        if(gameData != null)
+        {
+            points = gameData.gemCounter;
+        }
     }
 }

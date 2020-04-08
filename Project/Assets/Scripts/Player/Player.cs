@@ -8,8 +8,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Public attributes
-    public int Max_Health = 100;
-    public int Current_Health;
+    public int maxHealth = 100;
+    public int currentHealth;
 
     // Private attributes
     Game_Manager gameManager;
@@ -18,16 +18,18 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Current_Health = Max_Health;
+        currentHealth = maxHealth;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_Manager>();
+
+        LoadData();
     }
 
     public void TakeDamage(int damage)
     {
-        Current_Health -= damage;
-        gameManager.SetHealth(Current_Health);
+        currentHealth -= damage;
+        gameManager.SetHealth(currentHealth);
 
-        if(Current_Health <= 0)
+        if(currentHealth <= 0)
         {
             gameManager.EndGame();
         }
@@ -35,8 +37,23 @@ public class Player : MonoBehaviour
 
     public void Takehealth(int health)
     {
-        Current_Health += health;
-        gameManager.SetHealth(Current_Health);
+        currentHealth += health;
+        gameManager.SetHealth(currentHealth);
 
+    }
+
+    private void LoadData()
+    {
+        GameData gameData = SaveSystem.LoadGame();
+        if(gameData != null)
+        {
+            currentHealth = gameData.currentHealth;
+
+            Vector3 position;
+            position.x = gameData.position[0];
+            position.y = gameData.position[1];
+            position.z = gameData.position[2];
+            transform.position = position;
+        }
     }
 }

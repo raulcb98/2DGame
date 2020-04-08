@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Define the logic of the pause menu.
@@ -11,6 +12,7 @@ public class Pause_Menu : MonoBehaviour
     // Public attributes.
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public Text saveCommitText;
 
 
     // Update is called once per frame.
@@ -45,6 +47,7 @@ public class Pause_Menu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        saveCommitText.enabled = false;
     }
 
 
@@ -60,6 +63,12 @@ public class Pause_Menu : MonoBehaviour
     {
         //Debug.Log("Quitting game...");
         Application.Quit();
+    }
+
+    public void SaveGame()
+    {
+        SaveSystem.SaveGame();
+        saveCommitText.enabled = true;
     }
 }
 
