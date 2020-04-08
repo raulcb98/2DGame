@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     // Public attributes.
     public float speed = 20f;
     public Rigidbody2D rb;
-    public float damage = 40f;
+    public int damage = 40;
     public GameObject bulletImpactAnimation;
 
     // Private attributes.

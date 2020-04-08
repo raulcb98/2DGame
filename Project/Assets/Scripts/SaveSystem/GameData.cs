@@ -9,13 +9,9 @@ public class GameData
     public int currentHealth;
     public float[] position;
 
-    // Game Manager data
-    public int gemCounter;
-
     public GameData()
     {
         GetPlayerData();
-        GetGameManagerData();
     }
 
     private void GetPlayerData()
@@ -34,20 +30,6 @@ public class GameData
         else
         {
             Debug.LogError("Unable to get Player data while saving game");
-        }
-    }
-
-
-    private void GetGameManagerData()
-    {
-        Game_Manager manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_Manager>();
-
-        if(manager != null)
-        {
-            gemCounter = manager.GetGemsCounter();
-        } else
-        {
-            Debug.LogError("Unable to get Game Manager data while saving game");
         }
     }
 }

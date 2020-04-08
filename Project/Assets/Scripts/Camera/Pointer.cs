@@ -21,9 +21,10 @@ public class Pointer : MonoBehaviour
     }
 
     // Set points text value
-    public void setPoints(int points) 
+    public void SetPoints(int points) 
     {
-        pointerText.text = points.ToString("f0");
+        this.points = points;
+        pointerText.text = this.points.ToString("f0");
     }
 
 }

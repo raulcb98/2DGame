@@ -9,49 +9,45 @@ using UnityEngine.UI;
 public class Game_Manager : MonoBehaviour
 {
     // Private variables
-    Player player;
+    //Player player;
 
-    Timer timer;
-    Pointer pointer;
-    HealthBar healthBar;
+    //timer timer;
+    //pointer pointer;
+    //healthbar healthbar;
 
-    private float time = 0;
-    private int points = 0;
+    //private float time = 0;
+    //private int points = 0;
 
-    bool gameHasEnded = false;
+    //bool gameHasEnded = false;
 
 
     // Start is called before the first frame update 
     void Start()
     {
-        GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        //GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-        timer = mainCamera.GetComponentInChildren<Timer>();
-        pointer = mainCamera.GetComponentInChildren<Pointer>();
-        healthBar = mainCamera.GetComponentInChildren<HealthBar>();
+        //timer = mainCamera.GetComponentInChildren<Timer>();
+        //pointer = mainCamera.GetComponentInChildren<Pointer>();
+        //healthBar = mainCamera.GetComponentInChildren<HealthBar>();
 
-        healthBar.SetMaxHealth(player.maxHealth);
+        //healthBar.SetMaxHealth(player.maxHealth);
 
-        LoadData();
+        //LoadData();
     }
 
     // Update is called once per frame
     void Update()
     {
-        time = time + 1 * Time.deltaTime;
-        timer.SetTime(time);
+        //time = time + 1 * Time.deltaTime;
+        //timer.SetTime(time);
     }
 
     // Finish the game
     public void EndGame()
     {
-        if (gameHasEnded == false)
-        {
-            gameHasEnded = true;
-            Restart();
-        }
+        Restart();
     }
 
 
@@ -63,28 +59,28 @@ public class Game_Manager : MonoBehaviour
 
 
     // Update score pointer
-    public void IncreasePointer(int increment)
-    {
-        points += increment;
-        pointer.setPoints(points);
-    }
+    //public void IncreasePointer(int increment)
+    //{
+    //    points += increment;
+    //    pointer.setPoints(points);
+    //}
 
-    public void SetHealth(int increment)
-    {
-        healthBar.SetHealth(increment);
-    }
+    //public void SetHealth(int increment)
+    //{
+    //    healthBar.SetHealth(increment);
+    //}
 
-    public int GetGemsCounter()
-    {
-        return points;
-    }
+    //public int GetGemsCounter()
+    //{
+    //    return points;
+    //}
 
-    private void LoadData()
-    {
-        GameData gameData = SaveSystem.LoadGame();
-        if(gameData != null)
-        {
-            points = gameData.gemCounter;
-        }
-    }
+    //private void LoadData()
+    //{
+    //    GameData gameData = SaveSystem.LoadGame(0);
+    //    if(gameData != null)
+    //    {
+    //        points = gameData.gemCounter;
+    //    }
+    //}
 }

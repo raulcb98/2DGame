@@ -10,41 +10,67 @@ public class Player : MonoBehaviour
     // Public attributes
     public int maxHealth = 100;
     public int currentHealth;
+    public int points = 0;
 
     // Private attributes
-    Game_Manager gameManager;
+    HealthBar healthBar;
+    Pointer pointer;
 
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_Manager>();
+        healthBar = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<HealthBar>();
+        pointer = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<Pointer>();
 
-        LoadData();
+        //LoadData();
     }
+    
+    public void TakeHealth(int health)
+    {
+        currentHealth += health;
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        healthBar.SetHealth(currentHealth);
+    }
+
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        gameManager.SetHealth(currentHealth);
+        healthBar.SetHealth(currentHealth);
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
-            gameManager.EndGame();
+            GameManager.EndGame();
         }
     }
 
-    public void Takehealth(int health)
-    {
-        currentHealth += health;
-        gameManager.SetHealth(currentHealth);
 
+    public void TakePoints(int points)
+    {
+        this.points += points;
+        pointer.SetPoints(this.points);
     }
+
+
+    public void SpendPoints(int spend)
+    {
+        points -= spend;
+        pointer.SetPoints(points);
+    }
+
+
+    
 
     private void LoadData()
     {
-        GameData gameData = SaveSystem.LoadGame();
+        GameData gameData = SaveSystem.LoadGame(0);
         if(gameData != null)
         {
             currentHealth = gameData.currentHealth;

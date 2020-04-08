@@ -9,23 +9,24 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 { 
     // Public attributes
-    public float health = 100f;
+    public int health = 100;
+    public int enemyDamage = 20;
     public GameObject deathEffect;
 
     // Private attributes
-    Game_Manager manager;
+    Player player;
     int enemyDeathReward = 1;
 
 
     // Start is called at first frame
     void Start()
     {
-        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_Manager>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
 
     // Decrease enemy health
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
 
@@ -39,7 +40,7 @@ public class Enemy : MonoBehaviour
     // Destroy the enemy
     void Die()
     {
-        manager.IncreasePointer(enemyDeathReward);
+        player.TakePoints(enemyDeathReward);
         FindObjectOfType<AudioManager>().Play("DeathEnemy");
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
@@ -53,7 +54,7 @@ public class Enemy : MonoBehaviour
 
         if (player != null)
         {            
-            player.TakeDamage(20);
+            player.TakeDamage(enemyDamage);
         }
     }
 }

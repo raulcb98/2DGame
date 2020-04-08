@@ -5,21 +5,27 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    private static string path = Application.persistentDataPath + "/game.dat";
 
-    public static void SaveGame()
+    public static int currentGameSlot;
+
+    public static void SaveGame(int gameSlot)
     {
+        currentGameSlot = gameSlot;
+        string path = Application.persistentDataPath + "/game" + currentGameSlot.ToString() + ".dat";
+
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
 
         GameData data = new GameData();
-
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public static GameData LoadGame()
+    public static GameData LoadGame(int gameSlot)
     {
+        currentGameSlot = gameSlot;
+        string path = Application.persistentDataPath + "/game" + currentGameSlot.ToString() + ".dat";
+
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

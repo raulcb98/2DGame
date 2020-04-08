@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
 {
     // Private attributes
     private Text timeText;
+    private float time;
 
     
     // Start is called once at first frame
@@ -20,10 +21,9 @@ public class Timer : MonoBehaviour
     }
 
 
-    // Set time text value
-    public void SetTime(float time)
+    void Update()
     {
+        time = time + 1 * Time.deltaTime;
         timeText.text = time.ToString("f0");
     }
-
 }
