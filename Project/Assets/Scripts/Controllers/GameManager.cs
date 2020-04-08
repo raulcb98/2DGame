@@ -17,6 +17,6 @@ public static class GameManager
     // Load menu scene
     private static void Restart()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 }

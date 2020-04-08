@@ -55,7 +55,7 @@ public class Pause_Menu : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("PulseSound");
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
 

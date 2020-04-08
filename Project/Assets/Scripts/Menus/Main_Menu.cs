@@ -19,6 +19,18 @@ public class Main_Menu : MonoBehaviour
     }
 
 
+    public void ShowOptionsMenu()
+    {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
+        SceneManager.LoadScene("OptionsMenu");
+    }
+
+
+    public void ShowLoadGameMenu()
+    {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
+        SceneManager.LoadScene("LoadGameMenu");
+    }
 
     // Close the game.
     public void QuitGame()
