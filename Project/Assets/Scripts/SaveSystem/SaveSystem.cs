@@ -8,23 +8,23 @@ public static class SaveSystem
     public static void SaveGame()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = FindPathById(GameManager.activeGameSlot);
+        string path = GameManager.activeGamePath;
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        GameData data = new GameData();
+        PlayerData data = new PlayerData();
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public static GameData LoadGame()
+    public static PlayerData LoadGame()
     {
-        string path = FindPathById(GameManager.activeGameSlot);
+        string path = GameManager.activeGamePath;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            GameData data = formatter.Deserialize(stream) as GameData;
+            PlayerData data = formatter.Deserialize(stream) as PlayerData;
             stream.Close();
 
             return data;
@@ -32,17 +32,6 @@ public static class SaveSystem
         {
             Debug.LogError("Save file not found in " + path);
             return null;
-        }
-    }
-
-    private static string FindPathById(int gameSlot)
-    {
-        switch (gameSlot)
-        {
-            case 1: return Constants.GAMEPATH1;
-            case 2: return Constants.GAMEPATH2;
-            case 3: return Constants.GAMEPATH3;
-            default: return null;
         }
     }
 }

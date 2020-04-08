@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 /// <summary>
 /// Defines player attributes.
@@ -20,11 +21,16 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
+        if (File.Exists(GameManager.activeGamePath))
+        {
+            LoadData();
+        } else
+        {
+            currentHealth = maxHealth;
+        }
+
         healthBar = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<HealthBar>();
         pointer = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<Pointer>();
-
-        //LoadData();
     }
     
     public void TakeHealth(int health)
@@ -66,19 +72,17 @@ public class Player : MonoBehaviour
     }
 
 
-    
-
     private void LoadData()
     {
-        GameData gameData = SaveSystem.LoadGame();
-        if(gameData != null)
+        PlayerData playerData = SaveSystem.LoadGame();
+        if(playerData != null)
         {
-            currentHealth = gameData.currentHealth;
+            currentHealth = playerData.currentHealth;
 
             Vector3 position;
-            position.x = gameData.position[0];
-            position.y = gameData.position[1];
-            position.z = gameData.position[2];
+            position.x = playerData.position[0];
+            position.y = playerData.position[1];
+            position.z = playerData.position[2];
             transform.position = position;
         }
     }

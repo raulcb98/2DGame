@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public static class GameManager
 {
-    public static int activeGameSlot;
+    public static string activeGamePath;
 
+
+    public static void NewGame(string gamePath)
+    {
+        activeGamePath = gamePath;
+        SceneManager.LoadScene("Main");
+    }
 
     public static void EndGame()
     {
@@ -18,5 +24,11 @@ public static class GameManager
     private static void Restart()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public static void LoadGame(string gamePath) 
+    {
+        activeGamePath = gamePath;
+        SceneManager.LoadScene("Main");
     }
 }

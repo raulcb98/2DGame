@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class GameData
+public class PlayerData
 {
     // Player data
     public int currentHealth;
     public float[] position;
 
-    public GameData()
-    {
-        GetPlayerData();
-    }
-
-    private void GetPlayerData()
+    public PlayerData()
     {
         Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 

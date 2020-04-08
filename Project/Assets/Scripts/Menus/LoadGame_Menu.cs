@@ -16,23 +16,52 @@ public class LoadGame_Menu : MonoBehaviour
         EnableGameButtons();
     }
 
+    private void EnableGameButtons()
+    {
+        if (File.Exists(PathManager.gamePath1))
+        {
+            gameButton1.GetComponent<Button>().enabled = true;
+        }
+
+        if (File.Exists(PathManager.gamePath2))
+        {
+            gameButton2.GetComponent<Button>().enabled = true;
+        }
+
+        if (File.Exists(PathManager.gamePath3))
+        {
+            gameButton3.GetComponent<Button>().enabled = true;
+        }
+    }
+
+    public void LoadGame(int gameSlotId)
+    {
+        GameManager.LoadGame(PathManager.FindGamePathById(gameSlotId));
+    }
+
     public void Back()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
-    private void EnableGameButtons()
+    public void DeleteAllSavedGame()
     {
-        if (File.Exists(Constants.GAMEPATH1)) {
-            gameButton1.GetComponent<Button>().enabled = true;
+        if (File.Exists(PathManager.gamePath1))
+        {
+            File.Delete(PathManager.gamePath1);
+            gameButton1.GetComponent<Button>().enabled = false;
         }
 
-        if (File.Exists(Constants.GAMEPATH2)) {
-            gameButton2.GetComponent<Button>().enabled = true;
+        if (File.Exists(PathManager.gamePath2))
+        {
+            File.Delete(PathManager.gamePath2);
+            gameButton2.GetComponent<Button>().enabled = false;
         }
 
-        if (File.Exists(Constants.GAMEPATH3)) {
-            gameButton3.GetComponent<Button>().enabled = true;
+        if (File.Exists(PathManager.gamePath3))
+        {
+            File.Delete(PathManager.gamePath3);
+            gameButton3.GetComponent<Button>().enabled = false;
         }
     }
 }
