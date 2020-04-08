@@ -16,14 +16,7 @@ public static class GameManager
 
     public static void EndGame()
     {
-        Restart();
-    }
-
-
-    // Load menu scene
-    private static void Restart()
-    {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("GameOverMenu");
     }
 
     public static void LoadGame(string gamePath) 

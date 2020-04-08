@@ -34,4 +34,9 @@ public static class SaveSystem
             return null;
         }
     }
+
+    //public static T thisIs<T>(T obj)
+    //{
+    //    return obj;
+    //}
 }
