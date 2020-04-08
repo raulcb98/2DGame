@@ -5,15 +5,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-
-    public static int currentGameSlot;
-
-    public static void SaveGame(int gameSlot)
+    public static void SaveGame()
     {
-        currentGameSlot = gameSlot;
-        string path = Application.persistentDataPath + "/game" + currentGameSlot.ToString() + ".dat";
-
         BinaryFormatter formatter = new BinaryFormatter();
+        string path = FindPathById(GameManager.activeGameSlot);
         FileStream stream = new FileStream(path, FileMode.Create);
 
         GameData data = new GameData();
@@ -21,11 +16,9 @@ public static class SaveSystem
         stream.Close();
     }
 
-    public static GameData LoadGame(int gameSlot)
+    public static GameData LoadGame()
     {
-        currentGameSlot = gameSlot;
-        string path = Application.persistentDataPath + "/game" + currentGameSlot.ToString() + ".dat";
-
+        string path = FindPathById(GameManager.activeGameSlot);
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -39,6 +32,17 @@ public static class SaveSystem
         {
             Debug.LogError("Save file not found in " + path);
             return null;
+        }
+    }
+
+    private static string FindPathById(int gameSlot)
+    {
+        switch (gameSlot)
+        {
+            case 1: return Constants.GAMEPATH1;
+            case 2: return Constants.GAMEPATH2;
+            case 3: return Constants.GAMEPATH3;
+            default: return null;
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class GameManager
 {
-    public static int gameSlot;
+    public static int activeGameSlot;
 
 
     public static void EndGame()
