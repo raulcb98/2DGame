@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     public int health = 100;
     public int enemyDamage = 20;
     public GameObject deathEffect;
+    public float attackRate = 1f;
+
+    float nextAttackTime = 0f;
 
     // Private attributes
     Player player;
@@ -50,11 +53,15 @@ public class Enemy : MonoBehaviour
     // This method is called when a bullet impact to the enemy
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.GetComponentInChildren<Player>();
+        if (Time.time >= nextAttackTime)
+        {
+            nextAttackTime = Time.time + 1 / attackRate;
+            Player player = collision.GetComponentInChildren<Player>();
 
-        if (player != null)
-        {            
-            player.TakeDamage(enemyDamage);
+            if (player != null)
+            {
+                player.TakeDamage(enemyDamage);
+            }
         }
     }
 }
