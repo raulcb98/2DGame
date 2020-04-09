@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     // Start is called at first frame
     void Start()
     {
+        LoadData();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
@@ -62,6 +63,16 @@ public class Enemy : MonoBehaviour
             {
                 player.TakeDamage(enemyDamage);
             }
+        }
+    }
+
+    private void LoadData()
+    {
+        SettingsData data = new SettingsData();
+        if(data != null)
+        {
+            health = data.enemyHealth;
+            enemyDamage = data.enemyDamage;
         }
     }
 }

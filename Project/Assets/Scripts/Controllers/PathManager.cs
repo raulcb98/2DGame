@@ -11,6 +11,7 @@ public static class PathManager
     public static string gamePath3 = Application.persistentDataPath + "/game3.dat";
 
     public static string rankingPath = Application.persistentDataPath + "/ranking.dat";
+    public static string settingsPath = Application.persistentDataPath + "/settings.dat";
 
     public static string getAvailableGamePath()
     {
@@ -47,6 +48,8 @@ public static class PathManager
     {
         if (typeof(T) == typeof(PlayerData)) return GameManager.activeGamePath;
         if (typeof(T) == typeof(RankingData)) return rankingPath;
+        if (typeof(T) == typeof(SettingsData)) return settingsPath;
+
         return null;
     }
 }
