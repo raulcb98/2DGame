@@ -16,6 +16,12 @@ public static class GameManager
 
     public static void EndGame()
     {
+        // Update ranking
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        RankingData ranking = new RankingData();
+        ranking.UpdateRanking(player.points);
+        SaveSystem.Save(ranking);
+
         SceneManager.LoadScene("GameOverMenu");
     }
 

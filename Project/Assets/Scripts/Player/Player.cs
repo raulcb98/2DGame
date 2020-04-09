@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 
     private void LoadData()
     {
-        PlayerData playerData = SaveSystem.LoadGame();
+        PlayerData playerData = SaveSystem.Load<PlayerData>();
         if(playerData != null)
         {
             currentHealth = playerData.currentHealth;

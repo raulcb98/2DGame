@@ -67,7 +67,7 @@ public class Pause_Menu : MonoBehaviour
 
     public void SaveGame()
     {
-        SaveSystem.SaveGame();
+        SaveSystem.Save(new PlayerData());
         saveCommitText.enabled = true;
     }
 }

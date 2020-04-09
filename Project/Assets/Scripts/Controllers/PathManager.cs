@@ -10,9 +10,7 @@ public static class PathManager
     public static string gamePath2 = Application.persistentDataPath + "/game2.dat";
     public static string gamePath3 = Application.persistentDataPath + "/game3.dat";
 
-    //public static int gamePathId1 = 1;
-    //public static int gamePathId2 = 2;
-    //public static int gamePathId3 = 3;
+    public static string rankingPath = Application.persistentDataPath + "/ranking.dat";
 
     public static string getAvailableGamePath()
     {
@@ -44,5 +42,11 @@ public static class PathManager
             case 3: return gamePath3;
             default: return null;
         }
+    }
+    public static string SelectPath<T>()
+    {
+        if (typeof(T) == typeof(PlayerData)) return GameManager.activeGamePath;
+        if (typeof(T) == typeof(RankingData)) return rankingPath;
+        return null;
     }
 }
