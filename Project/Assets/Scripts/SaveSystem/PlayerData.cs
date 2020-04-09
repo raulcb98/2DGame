@@ -6,9 +6,11 @@ using UnityEngine;
 public class PlayerData
 {
     // Player data
+    public string playerName;
     public int currentHealth;
     public int points;
     public float[] position;
+
 
     public PlayerData()
     {
@@ -16,6 +18,7 @@ public class PlayerData
 
         if (player != null)
         {
+            playerName = player.playerName;
             currentHealth = player.currentHealth;
             points = player.points;
 

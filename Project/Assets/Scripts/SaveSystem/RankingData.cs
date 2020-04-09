@@ -7,38 +7,64 @@ using System.IO;
 public class RankingData 
 {
     public int[] rankingPoints;
-    
+    public string[] rankingNames;
+
+    private int rankingSize = 10;
+
     public RankingData()
     {
         if (File.Exists(PathManager.rankingPath)) {
             RankingData data = SaveSystem.Load<RankingData>();
             rankingPoints = data.rankingPoints;
+            rankingNames = data.rankingNames;
         } else
         {
-            rankingPoints = new int[10];
+            rankingPoints = new int[rankingSize];
+            rankingNames = new string[rankingSize];
             for(int i = 0; i < rankingPoints.Length; i++)
             {
-                rankingPoints[i] = 0;
+                rankingPoints[i] = -1;
+                rankingNames[i] = "None";
             }
         }
     }
 
-    public void UpdateRanking(int points)
+    public void UpdateRanking(int points, string name)
     {
-        bool found = false;
-        int i = 0;
-
-        while(!found && i < rankingPoints.Length)
+        // Search for the first bigger
+        int index = rankingSize - 1;
+        while (index >= 0 && rankingPoints[index] <= points)
         {
-            if(rankingPoints[i] < points)
-            {
-                rankingPoints[i] = points;
-                found = true;
-            }
-            else
-            {
-                i++;
-            }
+            index--;
+        }
+
+
+        // Cast ranking arrays to lists
+        List<int> arrayPoints = new List<int>();
+        List<string> arrayNames = new List<string>();
+
+        for(int i = 0; i < rankingSize; i++)
+        {
+            arrayPoints.Add(rankingPoints[i]);
+            arrayNames.Add(rankingNames[i]);
+        }
+
+
+
+        // Insert the new element
+        index++;
+        if(index < rankingSize)
+        {
+            arrayPoints.Insert(index, points);
+            arrayNames.Insert(index, name);
+        }
+
+
+        // Cast list to arrays
+        for(int i = 0; i < rankingSize; i++)
+        {
+            rankingPoints[i] = arrayPoints[i];
+            rankingNames[i] = arrayNames[i];
         }
     }
 }

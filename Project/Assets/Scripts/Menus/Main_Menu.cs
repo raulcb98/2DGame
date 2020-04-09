@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class Main_Menu : MonoBehaviour
 {
     public Button newGameButton;
+    public InputField playerNameInputField;
 
     private void Start()
     {
@@ -23,12 +24,21 @@ public class Main_Menu : MonoBehaviour
     // Load the game scene.
     public void NewGame()
     {
-        FindObjectOfType<AudioManager>().Play("PulseSound");
-        GameManager.NewGame(PathManager.getAvailableGamePath());
-        //SceneManager.LoadScene("Main");
+        string playerName = playerNameInputField.text;
+        if (playerName.Length > 0)
+        {
+            FindObjectOfType<AudioManager>().Play("PulseSound");
+            GameManager.NewGame(PathManager.getAvailableGamePath(), playerName);
+            //SceneManager.LoadScene("Main");
+        }
+
     }
 
-
+    public void ShowRankingMenu()
+    {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
+        SceneManager.LoadScene("GameOverMenu");
+    }
 
 
     public void ShowOptionsMenu()

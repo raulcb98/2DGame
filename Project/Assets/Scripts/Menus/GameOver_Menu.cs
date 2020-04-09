@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameOver_Menu : MonoBehaviour
 {
     public Text rankingText;
+    public Text nameRankingText;
 
 
     private void Start()
@@ -17,20 +19,35 @@ public class GameOver_Menu : MonoBehaviour
     private void ShowRanking()
     {
         RankingData ranking = new RankingData();
-        int[] rankingPoints = ranking.rankingPoints;
+        rankingText.text = "Ranking : " + arrayToString(ranking.rankingPoints);
+        nameRankingText.text = "Name Ranking : " + arrayToString(ranking.rankingNames);
+    }
 
+
+    private string arrayToString<T>(T[] array)
+    {
         string cad = "[";
-        for(int i = 0; i < rankingPoints.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            cad += rankingPoints[i].ToString();
-            if (i + 1 < rankingPoints.Length) cad += ", ";
+            cad += array[i].ToString();
+            if (i + 1 < array.Length) cad += ", ";
         }
         cad += "]";
 
-        rankingText.text = rankingText.text + " : " + cad;
+        return cad;
+    }
+
+
+    public void ResetRanking()
+    {
+        if (File.Exists(PathManager.rankingPath))
+        {
+            File.Delete(PathManager.rankingPath);
+        }
+        ShowRanking();
     }
    
-    public void ShowMenu()
+    public void goMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }

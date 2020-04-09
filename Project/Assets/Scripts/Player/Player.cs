@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public int points = 0;
+    public string playerName;
 
     // Private attributes
     HealthBar healthBar;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
             LoadData();
         } else
         {
+            playerName = GameManager.activePlayerName;
             currentHealth = maxHealth;
         }
 
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour
         PlayerData playerData = SaveSystem.Load<PlayerData>();
         if(playerData != null)
         {
+            playerName = playerData.playerName;
             currentHealth = playerData.currentHealth;
             points = playerData.points;
 
