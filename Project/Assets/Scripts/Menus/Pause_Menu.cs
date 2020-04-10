@@ -13,7 +13,16 @@ public class Pause_Menu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public Text saveCommitText;
+    public Button saveButton;
 
+
+    private void Start()
+    {
+        if(GameManager.activeGamePath == null)
+        {
+            saveButton.enabled = false;
+        }
+    }
 
     // Update is called once per frame.
     void Update()

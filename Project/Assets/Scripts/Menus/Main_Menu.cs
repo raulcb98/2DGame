@@ -10,14 +10,14 @@ using UnityEngine.UI;
 /// </summary>
 public class Main_Menu : MonoBehaviour
 {
-    public Button newGameButton;
+    public GameObject warningText;
     public InputField playerNameInputField;
 
     private void Start()
     {
         if(PathManager.getAvailableGamePath() == null)
         {
-            newGameButton.GetComponent<Button>().enabled = false;
+            warningText.SetActive(true);
         }
     }
 

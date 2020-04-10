@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 590133079}
   saveCommitText: {fileID: 1969736541}
+  saveButton: {fileID: 1012008791}
 --- !u!1 &590133079
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.46666667}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
