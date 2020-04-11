@@ -37,7 +37,7 @@ public class Main_Menu : MonoBehaviour
     public void ShowRankingMenu()
     {
         FindObjectOfType<AudioManager>().Play("PulseSound");
-        SceneManager.LoadScene("GameOverMenu");
+        SceneManager.LoadScene("RankingMenu");
     }
 
 
