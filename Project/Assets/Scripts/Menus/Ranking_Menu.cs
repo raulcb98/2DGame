@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
 
-public class GameOver_Menu : MonoBehaviour
+public class Ranking_Menu : MonoBehaviour
 {
     public Text rankingText;
-    public Text nameRankingText;
-
 
     private void Start()
     {
@@ -18,9 +16,31 @@ public class GameOver_Menu : MonoBehaviour
 
     private void ShowRanking()
     {
+        rankingText.text = "";
+
         RankingData ranking = new RankingData();
-        rankingText.text = "Ranking : " + arrayToString(ranking.rankingPoints);
-        nameRankingText.text = "Name Ranking : " + arrayToString(ranking.rankingNames);
+
+        int[] rankingPoints = ranking.rankingPoints;
+        string[] rankingNames = ranking.rankingNames;
+
+        string text = "";
+        for(int i = 0; i < rankingPoints.Length; i++)
+        {
+            if (rankingPoints[i] >= 0)
+            {
+                text = "";
+                text += i+1 + ".  " + rankingNames[i] + "  ";
+
+                int numPoints = 30 - text.Length;
+                for (int j = 0; j < numPoints; j++)
+                {
+                    text += ". ";
+                }
+                text += rankingPoints[i] + "\n";
+
+                rankingText.text += text;
+            }
+        }
     }
 
 

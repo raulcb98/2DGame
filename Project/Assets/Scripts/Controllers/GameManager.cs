@@ -24,7 +24,7 @@ public static class GameManager
         ranking.UpdateRanking(player.points, player.playerName);
         SaveSystem.Save(ranking);
 
-        SceneManager.LoadScene("GameOverMenu");
+        SceneManager.LoadScene("RankingMenu");
     }
 
     public static void LoadGame(string gamePath) 

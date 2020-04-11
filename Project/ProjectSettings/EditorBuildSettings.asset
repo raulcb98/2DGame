@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/LoadGameMenu.unity
     guid: 0c37465a0a48a6249a1904f05912ee66
   - enabled: 1
-    path: Assets/Scenes/Menus/GameOverMenu.unity
+    path: Assets/Scenes/Menus/RankingMenu.unity
     guid: 3c752dd5b0ddd3a4a8ac132960220c70
   m_configObjects: {}

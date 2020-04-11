@@ -7,9 +7,13 @@ using UnityEngine.UI;
 
 public class LoadGame_Menu : MonoBehaviour
 {
-    public GameObject gameButton1;
-    public GameObject gameButton2;
-    public GameObject gameButton3;
+    public Button gameButton1;
+    public Button gameButton2;
+    public Button gameButton3;
+
+    public Button deleteButton1;
+    public Button deleteButton2;
+    public Button deleteButton3;
 
     private void Start()
     {
@@ -20,17 +24,20 @@ public class LoadGame_Menu : MonoBehaviour
     {
         if (File.Exists(PathManager.gamePath1))
         {
-            gameButton1.GetComponent<Button>().enabled = true;
+            gameButton1.enabled = true;
+            deleteButton1.enabled = true;
         }
 
         if (File.Exists(PathManager.gamePath2))
         {
-            gameButton2.GetComponent<Button>().enabled = true;
+            gameButton2.enabled = true;
+            deleteButton2.enabled = true;
         }
 
         if (File.Exists(PathManager.gamePath3))
         {
-            gameButton3.GetComponent<Button>().enabled = true;
+            gameButton3.enabled = true;
+            deleteButton3.enabled = true;
         }
     }
 
@@ -44,24 +51,30 @@ public class LoadGame_Menu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void DeleteAllSavedGame()
+    public void DeleteSaveGame(int id)
     {
-        if (File.Exists(PathManager.gamePath1))
+        switch (id)
         {
-            File.Delete(PathManager.gamePath1);
-            gameButton1.GetComponent<Button>().enabled = false;
-        }
+            case 1:
+                {
+                    File.Delete(PathManager.gamePath1);
+                    gameButton1.enabled = false;
+                    deleteButton1.enabled = false;
+                } break;
 
-        if (File.Exists(PathManager.gamePath2))
-        {
-            File.Delete(PathManager.gamePath2);
-            gameButton2.GetComponent<Button>().enabled = false;
-        }
+            case 2:
+                {
+                    File.Delete(PathManager.gamePath2);
+                    gameButton2.enabled = false;
+                    deleteButton2.enabled = false;
+                } break;
 
-        if (File.Exists(PathManager.gamePath3))
-        {
-            File.Delete(PathManager.gamePath3);
-            gameButton3.GetComponent<Button>().enabled = false;
+            case 3:
+                {
+                    File.Delete(PathManager.gamePath3);
+                    gameButton3.enabled = false;
+                    deleteButton3.enabled = false;
+                } break;
         }
     }
 }
