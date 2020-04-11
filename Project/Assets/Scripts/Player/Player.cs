@@ -22,6 +22,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SettingsData settingsData = new SettingsData();
+        if (settingsData != null)
+        {
+            maxHealth = settingsData.playerMaxHealth;
+        }
+
         if (File.Exists(GameManager.activeGamePath))
         {
             LoadData();

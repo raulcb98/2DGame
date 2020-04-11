@@ -24,9 +24,10 @@ public class PlayerMovement : MonoBehaviour {
 	// Start is called once at first frame
 	void Start()
 	{
+		LoadData();
+
 		animator = GetComponent<Animator>();
 		controller = GetComponent<CharacterController2D>();
-
 	}
 
 	// Update is called once per frame
@@ -68,5 +69,15 @@ public class PlayerMovement : MonoBehaviour {
 		// Move our character
 		controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
 		jump = false;
+	}
+
+
+	private void LoadData()
+	{
+		SettingsData data = new SettingsData();
+		if(data != null)
+		{
+			runSpeed = data.playerSpeed;
+		}
 	}
 }

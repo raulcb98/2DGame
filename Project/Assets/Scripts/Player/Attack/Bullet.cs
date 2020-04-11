@@ -21,6 +21,8 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damage = Weapon.damage;
+
         // Bullet start at firepoint GameObject
         rb.velocity = transform.right * speed;
 

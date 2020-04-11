@@ -10,15 +10,14 @@ public class Enemy : MonoBehaviour
 { 
     // Public attributes
     public int health = 100;
-    public int enemyDamage = 20;
+    public int enemyDamage = 30;
+    public int enemyDeathReward = 5;
+    public float attackRate = 1.5f;
     public GameObject deathEffect;
-    public float attackRate = 1f;
-
-    float nextAttackTime = 0f;
 
     // Private attributes
     Player player;
-    int enemyDeathReward = 1;
+    private float nextAttackTime = 0f;
 
 
     // Start is called at first frame
@@ -73,6 +72,8 @@ public class Enemy : MonoBehaviour
         {
             health = data.enemyHealth;
             enemyDamage = data.enemyDamage;
+            attackRate = data.enemyAttackRate;
+            enemyDeathReward = data.enemyReward;
         }
     }
 }

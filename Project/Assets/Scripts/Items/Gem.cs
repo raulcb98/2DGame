@@ -7,7 +7,13 @@ using UnityEngine;
 /// </summary>
 public class Gem : MonoBehaviour
 {
-    public int gemReward = 1;
+    public int gemReward = 5;
+
+
+    private void Start()
+    {
+        LoadData();
+    }
 
     // This method is called when the player collide with a gem
     void OnTriggerEnter2D(Collider2D collision)
@@ -17,6 +23,16 @@ public class Gem : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("CoinSound");
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<Player>().TakePoints(gemReward);
+        }
+    }
+
+
+    private void LoadData()
+    {
+        SettingsData data = new SettingsData();
+        if(data != null)
+        {
+            gemReward = data.gemPoints;
         }
     }
 }

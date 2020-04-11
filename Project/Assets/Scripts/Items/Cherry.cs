@@ -8,8 +8,12 @@ using UnityEngine;
 public class Cherry : MonoBehaviour
 {
     // Public attributes
-    public int healthValue = 10;
+    public int healthValue = 30;
 
+    private void Start()
+    {
+        LoadData();
+    }
 
     // This method is called when the player collide with the fruit.
     void OnTriggerEnter2D(Collider2D collision)
@@ -20,6 +24,16 @@ public class Cherry : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("CherrySound");
             player.TakeHealth(healthValue);
+        }
+    }
+
+
+    private void LoadData()
+    {
+        SettingsData data = new SettingsData();
+        if(data != null)
+        {
+            healthValue = data.fruitHealth;
         }
     }
 }
