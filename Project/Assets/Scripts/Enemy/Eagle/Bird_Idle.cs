@@ -8,7 +8,7 @@ using UnityEngine;
 public class Bird_Idle : StateMachineBehaviour
 {
     // Public attributes
-    public float dangerDistance = 5f;
+    public float dangerDistance = 10f;
 
     // Private attributes
     Transform player;

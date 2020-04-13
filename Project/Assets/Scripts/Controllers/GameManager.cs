@@ -13,7 +13,7 @@ public static class GameManager
         activeGamePath = gamePath;
         activePlayerName = playerName;
 
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Level1");
     }
 
     public static void EndGame()
@@ -30,6 +30,6 @@ public static class GameManager
     public static void LoadGame(string gamePath) 
     {
         activeGamePath = gamePath;
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Level1");
     }
 }
