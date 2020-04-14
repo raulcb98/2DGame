@@ -4917,6 +4917,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   enemyDamage: 20
+  enemyDeathReward: 5
+  attackRate: 1.5
   deathEffect: {fileID: 2856936365131398819, guid: e2ca48e5441c94b448877ac40d0f75c3,
     type: 3}
 --- !u!58 &2104782168
@@ -5057,6 +5059,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 470413485, guid: 863b246fc8b4af74c92eaa32eae5c660, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 878017630925358752, guid: 863b246fc8b4af74c92eaa32eae5c660,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5126,6 +5132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 878017632372533826, guid: 863b246fc8b4af74c92eaa32eae5c660,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 863b246fc8b4af74c92eaa32eae5c660, type: 3}

@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     // Private attributes
     HealthBar healthBar;
     Pointer pointer;
+    PlayerMovement playerMovement;
 
 
     // Start is called before the first frame update
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
 
         healthBar = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<HealthBar>();
         pointer = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<Pointer>();
+        playerMovement = GetComponent<PlayerMovement>();
 
         healthBar.SetHealth(currentHealth);
         pointer.SetPoints(points);
@@ -61,6 +63,8 @@ public class Player : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+
+        playerMovement.IsHurt(true);
 
         if (currentHealth <= 0)
         {

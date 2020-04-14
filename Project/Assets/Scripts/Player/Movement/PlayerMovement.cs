@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool crouch = false;
+	bool hurt = false;
+	float hurtTime = 0f;
 
 
 	// Start is called once at first frame
@@ -52,6 +54,12 @@ public class PlayerMovement : MonoBehaviour {
 			crouch = false;
 		}
 
+		if (Time.time > hurtTime + 0.25f)
+		{
+			IsHurt(false);
+
+		}
+
 	}
 
 	public void OnLanding ()
@@ -63,6 +71,15 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		animator.SetBool("IsCrouching", isCrouching);
 	}
+
+
+	public void IsHurt(bool isHurt)
+	{
+		this.hurt = isHurt;
+		hurtTime = Time.time;
+		animator.SetBool("IsHurt", isHurt);
+	}
+
 
 	void FixedUpdate ()
 	{
