@@ -4858,7 +4858,7 @@ MonoBehaviour:
   m_ZDamping: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.63
-  m_CameraDistance: 10
+  m_CameraDistance: 10.36
   m_DeadZoneWidth: 0.2
   m_DeadZoneHeight: 0.2
   m_DeadZoneDepth: 0
@@ -5836,7 +5836,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 7
+  maxSpeed: 6
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -6206,7 +6206,7 @@ PrefabInstance:
     - target: {fileID: 878017632059608867, guid: 863b246fc8b4af74c92eaa32eae5c660,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -10.36
       objectReference: {fileID: 0}
     - target: {fileID: 878017632059608867, guid: 863b246fc8b4af74c92eaa32eae5c660,
         type: 3}
@@ -36456,7 +36456,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 7
+  maxSpeed: 6
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -39208,7 +39208,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 7
+  maxSpeed: 6
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
