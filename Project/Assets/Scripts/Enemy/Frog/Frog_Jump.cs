@@ -13,6 +13,7 @@ public class Frog_Jump : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     
+
     // Private attributes
     Rigidbody2D rb;
     Animator animator;
@@ -20,6 +21,7 @@ public class Frog_Jump : MonoBehaviour
     float jumpSleep = 1f;
     float nextJumpTime = 0f;
     bool jumpDirection = false;
+    FrogDecisionTree decisionTree;
 
 
     // Awakeis called once when the object is created
@@ -27,6 +29,7 @@ public class Frog_Jump : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        decisionTree = GetComponent<FrogDecisionTree>();
     }
 
 
@@ -34,14 +37,11 @@ public class Frog_Jump : MonoBehaviour
     void Update()
     {
         // Jump left and right alternatively
-        if (jumpDirection == false)
-        {
-            JumpAction(-1);
-        }
-        else
-        {
-            JumpAction(1);
-        }
+        int actionId = decisionTree.Decide();
+
+        if (actionId == Action.LEFT) JumpAction(-1);
+        if (actionId == Action.RIGHT) JumpAction(1);
+        if (actionId == Action.UP) JumpAction(0);
 
         jumpPhysics();
         jumpAnimation();
@@ -49,14 +49,16 @@ public class Frog_Jump : MonoBehaviour
 
 
     // Control jump frecuence
-    public void JumpAction(float axis)
+    public void JumpAction(float xAxis)
     {
+        float yAxis = 1;
+        if (xAxis == 0) yAxis = 1.5f;
+
         if (Time.time >= nextJumpTime)
         {
-            rb.velocity = new Vector2(axis, 1) * jumpVelocity; // -1 = left, 0 = nothing, +1 = right
+            rb.velocity = new Vector2(xAxis, yAxis) * jumpVelocity; // -1 = left, 0 = up, +1 = right
             nextJumpTime = Time.time + jumpSleep;
             jumpDirection = !jumpDirection;
-
         }
     }
 

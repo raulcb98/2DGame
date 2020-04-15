@@ -76,4 +76,20 @@ public class Enemy : MonoBehaviour
             enemyDeathReward = data.enemyReward;
         }
     }
+
+    public int CountEnemiesAtDistance(float distance)
+    {
+        Enemy[] allEnemies = FindObjectsOfType<Enemy>();
+        int counter = 0;
+        
+        for(int i = 0; i < allEnemies.Length; i++)
+        {
+            if(Vector2.Distance(transform.position, allEnemies[i].transform.position) <= distance)
+            {
+                counter++;
+            }
+        }
+
+        return counter - 1;
+    }
 }
