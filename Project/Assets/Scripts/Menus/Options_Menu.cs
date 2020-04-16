@@ -27,6 +27,7 @@ public class Options_Menu : MonoBehaviour
 
     public void Back()
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
         SaveSettings();
         SceneManager.LoadScene("MainMenu");
     }
@@ -72,6 +73,8 @@ public class Options_Menu : MonoBehaviour
 
     public void RestoreDefaultData()
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
+
         LoadSettings(true);
         if (File.Exists(PathManager.settingsPath))
         {

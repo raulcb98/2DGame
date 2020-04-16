@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 16304244}
   - component: {fileID: 16304243}
   - component: {fileID: 16304242}
+  - component: {fileID: 16304245}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -369,6 +370,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 16304245}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &16304243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +416,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16304240}
   m_CullTransparentMesh: 0
+--- !u!114 &16304245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16304240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77cd3a83c026f84ca604b3c16739562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &32710137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,7 +1693,7 @@ PrefabInstance:
     - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
         type: 3}
@@ -1705,6 +1729,86 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[6].volume
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[6].name
+      value: Menu_Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[8].name
+      value: Level1_Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 08b02fa758ad95949b0453625e621711, type: 3}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[8].volume
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[8].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[8].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[9].name
+      value: Level2_Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 88a38aae846ba4749aa50ff2870fa1a5, type: 3}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[9].volume
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[9].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[9].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[10].name
+      value: Level3_Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2fef77ce0d75d1c4992dbc8a7144c709, type: 3}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[10].volume
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[10].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719027686072608742, guid: 96987c76ab5629743ba3e90db48cc35b,
+        type: 3}
+      propertyPath: sounds.Array.data[10].loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2719027686072608743, guid: 96987c76ab5629743ba3e90db48cc35b,
         type: 3}
@@ -3104,6 +3208,7 @@ GameObject:
   - component: {fileID: 1976689881}
   - component: {fileID: 1976689880}
   - component: {fileID: 1976689879}
+  - component: {fileID: 1976689882}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -3193,6 +3298,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1976689882}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1976689880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3228,6 +3344,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1976689877}
   m_CullTransparentMesh: 0
+--- !u!114 &1976689882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976689877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77cd3a83c026f84ca604b3c16739562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1998147782
 GameObject:
   m_ObjectHideFlags: 0

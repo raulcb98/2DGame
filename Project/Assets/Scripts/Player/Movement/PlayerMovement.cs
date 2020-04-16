@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool crouch = false;
-	bool hurt = false;
+	public bool hurt = false;
 	float hurtTime = 0f;
 
 
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetButtonDown("Jump"))
 		{
-            FindObjectOfType<AudioManager>().Play("JumpSound");
+            AudioManager.instance.Play("JumpSound");
             jump = true;
 			animator.SetBool("IsJumping", true);
 		}

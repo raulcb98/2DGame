@@ -65,6 +65,8 @@ public class Pause_Menu : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("PulseSound");
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+        FindObjectOfType<AudioManager>().StopPlaying("Level1_Sound");
+        FindObjectOfType<AudioManager>().Play("Menu_Sound");
     }
 
 
@@ -76,6 +78,8 @@ public class Pause_Menu : MonoBehaviour
 
     public void SaveGame()
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
+
         SaveSystem.Save(new PlayerData());
         saveCommitText.enabled = true;
     }

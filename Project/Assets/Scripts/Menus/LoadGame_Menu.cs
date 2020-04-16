@@ -43,16 +43,20 @@ public class LoadGame_Menu : MonoBehaviour
 
     public void LoadGame(int gameSlotId)
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
         GameManager.LoadGame(PathManager.FindGamePathById(gameSlotId));
     }
 
     public void Back()
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
         SceneManager.LoadScene("MainMenu");
     }
 
     public void DeleteSaveGame(int id)
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
+
         switch (id)
         {
             case 1:

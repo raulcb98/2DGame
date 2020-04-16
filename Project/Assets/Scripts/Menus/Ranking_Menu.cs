@@ -60,6 +60,8 @@ public class Ranking_Menu : MonoBehaviour
 
     public void ResetRanking()
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
+
         if (File.Exists(PathManager.rankingPath))
         {
             File.Delete(PathManager.rankingPath);
@@ -69,6 +71,8 @@ public class Ranking_Menu : MonoBehaviour
    
     public void goMenu()
     {
+        FindObjectOfType<AudioManager>().Play("PulseSound");
+
         SceneManager.LoadScene("MainMenu");
     }
 }
