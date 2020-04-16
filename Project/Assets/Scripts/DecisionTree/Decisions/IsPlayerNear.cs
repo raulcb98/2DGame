@@ -17,17 +17,13 @@ public class IsPlayerNear : Decision
         throw new System.NotImplementedException();
     }
 
-    public override Node GetBranch()
+
+    public override bool Check()
     {
         Vector2 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         Vector2 myPos = this.agent.transform.position;
 
-        if(Vector2.Distance(myPos, playerPos) < nearDistance)
-        {
-            return yesNode;
-        } else
-        {
-            return noNode;
-        }
+        return Vector2.Distance(myPos, playerPos) < nearDistance;
     }
+
 }

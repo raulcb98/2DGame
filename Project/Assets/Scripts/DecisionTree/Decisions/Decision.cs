@@ -6,7 +6,20 @@ public abstract class Decision : Node
 {
     public Decision(GameObject agent): base(agent) {}
 
-    public abstract Node GetBranch();
+    public abstract bool Check();
+
+    public Node GetBranch()
+    {
+        if (Check())
+        {
+            return yesNode;
+        }
+        else
+        {
+            return noNode;
+        }
+    }
+    
 
     public override Node Decide()
     {

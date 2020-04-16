@@ -17,4 +17,5 @@ public abstract class Node
     public abstract Node Decide();
 
     public abstract int GetAction();
+
 }

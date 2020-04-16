@@ -11,21 +11,14 @@ public class EnoughHealth : Decision
         this.healthThreshold = healthThreshold;
     }
 
+    public override bool Check()
+    {
+        Enemy enemy = agent.GetComponent<Enemy>();
+        return enemy.health >= healthThreshold;
+    }
+
     public override int GetAction()
     {
         throw new System.NotImplementedException();
-    }
-
-    public override Node GetBranch()
-    {
-        Enemy enemy = agent.GetComponent<Enemy>();
-        if(enemy.health >= healthThreshold)
-        {
-            return yesNode;
-        }
-        else
-        {
-            return noNode;
-        }
     }
 }

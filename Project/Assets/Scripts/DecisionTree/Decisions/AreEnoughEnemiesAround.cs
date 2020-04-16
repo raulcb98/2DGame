@@ -18,18 +18,10 @@ public class AreEnoughEnemiesAround : Decision
         throw new System.NotImplementedException();
     }
 
-    public override Node GetBranch()
+    public override bool Check()
     {
         Enemy enemy = agent.GetComponent<Enemy>();
-
         int enemyCounter = enemy.CountEnemiesAtDistance(distance);
-        if(enemyCounter >= enemiesThreshold)
-        {
-            return yesNode;
-        }
-        else
-        {
-            return noNode;
-        }
+        return enemyCounter >= enemiesThreshold;
     }
 }

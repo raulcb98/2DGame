@@ -9,42 +9,19 @@ using UnityEngine;
 public class Rat_Idle : StateMachineBehaviour
 {
     // Public attributes
-    public float dangerDistance = 5f;
+    public float dangerDistance = 10f;
 
-    // Private attributes
-    Transform player;
-    Rigidbody2D rb;
-
-    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("isNear", false);
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        rb = animator.GetComponent<Rigidbody2D>();
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateinfo, int layerIndex)
     {
-        // Calculate distance
-        float distance = Mathf.Abs(player.position.x - rb.position.x);
-
-        // If player is under range, change state
-        if(distance < dangerDistance)
-        {
-            float valor = Random.Range(0.0f, 1.0f);
-
-            if (valor == 0.5f)
-            {
-                valor += 1f;
-            }
-
-            animator.SetFloat("Random", valor);
-
-            animator.SetBool("isNear", true);
-
-        }
+        IsPlayerNear isPlayerNear = new IsPlayerNear(animator.gameObject, dangerDistance);
+        animator.SetBool("isNear", isPlayerNear.Check());
     }
 
     //// OnStateExit is called when a transition ends and the state machine finishes evaluating this state

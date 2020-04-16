@@ -8,42 +8,35 @@ using UnityEngine;
 public class Rat_Attack : StateMachineBehaviour
 {
     // Public attributes
-    public float speed = 2.5f;
-    public float dangerDistance = 5f;
+    public float dangerDistance = 10f;
 
     // Private attributes
-    Transform player;
-    Rigidbody2D rb;
-
+    Enemy_Orientation enemy_Orientation;
+    Rat rat;
+    IsPlayerNear isPlayerNear;
+    Attack attack;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("isNear", true);
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        rb = animator.GetComponent<Rigidbody2D>();
+        //animator.SetBool("isNear", true);
+        animator.SetBool("LeaderAttack", false);
 
+        enemy_Orientation = animator.GetComponent<Enemy_Orientation>();
+        rat = animator.gameObject.GetComponent<Rat>();
+        isPlayerNear = new IsPlayerNear(animator.gameObject, dangerDistance);
+        attack = new Attack(animator.gameObject);
     }
 
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateinfo, int layerIndex)
     {
-        // Calculate distance
-        float distance = Mathf.Abs(player.position.x - rb.position.x);
+        animator.SetBool("isNear", isPlayerNear.Check());
+        animator.SetBool("LeaderExist", rat.GetLeader() != null);
 
-        // If player is not under range, change state
-        if (distance > dangerDistance)
-        {
-            animator.SetBool("isNear", false);
-        }
-
-        // If player is under range, attack
-        animator.GetComponent<Enemy_Orientation>().LookAtPlayer();
-
-        Vector2 target = new Vector2(player.position.x, rb.position.y);
-        Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        rb.MovePosition(newPos);
+        rat.move(attack.GetAction());
+        enemy_Orientation.LookAtPlayer();
     }
 
     //// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
