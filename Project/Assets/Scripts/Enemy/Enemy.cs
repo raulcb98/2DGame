@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
     // Private attributes
     private float nextAttackTime = 0f;
-
+    private bool rewarded = false;
 
     // Start is called at first frame
     void Start()
@@ -41,7 +41,12 @@ public class Enemy : MonoBehaviour
     // Destroy the enemy
     void Die()
     {
-        GameManager.TakePoints(enemyDeathReward);
+        if (!rewarded)
+        {
+            GameManager.TakePoints(enemyDeathReward);
+            rewarded = true;
+        }
+        
         FindObjectOfType<AudioManager>().Play("DeathEnemy");
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);

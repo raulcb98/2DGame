@@ -8,7 +8,7 @@ using UnityEngine;
 public class Gem : MonoBehaviour
 {
     public int gemReward = 5;
-
+    private bool used = false;
 
     private void Start()
     {
@@ -21,7 +21,13 @@ public class Gem : MonoBehaviour
         if (collision.tag == "Player")
         {
             FindObjectOfType<AudioManager>().Play("CoinSound");
-            GameManager.TakePoints(gemReward);
+
+            if (!used)
+            {
+                GameManager.TakePoints(gemReward);
+                used = true;
+            }
+
         }
     }
 

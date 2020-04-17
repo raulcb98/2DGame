@@ -10,6 +10,8 @@ public class Cherry : MonoBehaviour
     // Public attributes
     public int healthValue = 30;
 
+    private bool taken = false;
+
     private void Start()
     {
         LoadData();
@@ -23,7 +25,13 @@ public class Cherry : MonoBehaviour
         if (collision.tag == "Player" && player != null)
         {
             FindObjectOfType<AudioManager>().Play("CherrySound");
-            player.TakeHealth(healthValue);
+
+            if (!taken)
+            {
+                player.TakeHealth(healthValue);
+                taken = true;
+            }
+            
         }
     }
 

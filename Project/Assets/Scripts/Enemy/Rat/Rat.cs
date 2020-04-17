@@ -108,11 +108,11 @@ public class Rat : MonoBehaviour
         if(this.leader == this)
         {
             List<Rat> ratList = GetRatsAtDistance(distance);
-            float attackProbability = 0.6f;
+            float attackProbability = 0.35f;
 
             for (int i = 0; i < ratList.Capacity; i++)
             {
-                attackProbability += 0.05f;
+                attackProbability += Random.Range(0.05f, 0.15f);
             }
 
             float valor = Random.Range(0.0f, 1.0f);
