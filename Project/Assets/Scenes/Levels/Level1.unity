@@ -41359,12 +41359,12 @@ PrefabInstance:
     - target: {fileID: 974755183874494600, guid: 77d2c95df1d567549a9783d101469756,
         type: 3}
       propertyPath: m_Offset.x
-      value: 183.48
+      value: 181.26
       objectReference: {fileID: 0}
     - target: {fileID: 974755183874494600, guid: 77d2c95df1d567549a9783d101469756,
         type: 3}
       propertyPath: m_Offset.y
-      value: 13.01
+      value: 12.66
       objectReference: {fileID: 0}
     - target: {fileID: 974755183874494600, guid: 77d2c95df1d567549a9783d101469756,
         type: 3}

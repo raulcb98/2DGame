@@ -65,14 +65,13 @@ public class Pause_Menu : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("PulseSound");
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
-        FindObjectOfType<AudioManager>().StopPlaying("Level1_Sound");
+        FindObjectOfType<AudioManager>().StopPlaying(GameManager.currentLevel + "_Sound");
         FindObjectOfType<AudioManager>().Play("Menu_Sound");
     }
 
 
     public void QuitGame()
     {
-        //Debug.Log("Quitting game...");
         Application.Quit();
     }
 

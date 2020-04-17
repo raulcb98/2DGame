@@ -9,6 +9,10 @@ public static class GameManager
 {
     public static string activeGamePath;
     public static string activePlayerName;
+    public static string currentLevel;
+
+    public static int points;
+    public static int health;
 
     public static void NewGame(string gamePath, string playerName)
     {
@@ -24,9 +28,11 @@ public static class GameManager
         // Update ranking
         Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         RankingData ranking = new RankingData();
-        ranking.UpdateRanking(player.points, player.playerName);
+        ranking.UpdateRanking(GameManager.points, player.playerName);
         SaveSystem.Save(ranking);
-        AudioManager.instance.StopPlaying("Level1_Sound");
+        points = 0;
+        currentLevel = SceneManager.GetActiveScene().name;
+        AudioManager.instance.StopPlaying(currentLevel + "_Sound");
         AudioManager.instance.Play("Menu_Sound");
         SceneManager.LoadScene("RankingMenu");
     }
@@ -34,7 +40,12 @@ public static class GameManager
     public static void LoadGame(string gamePath) 
     {
         activeGamePath = gamePath;
-        SceneManager.LoadScene("Level1");
+        PlayerData playerData = SaveSystem.Load<PlayerData>();
+        points = playerData.points;
+        currentLevel = playerData.currentLevel;
+        SceneManager.LoadScene(currentLevel);
+        AudioManager.instance.StopPlaying("Menu_Sound");
+        AudioManager.instance.Play(currentLevel + "_Sound");
     }
 
     public static void LoadLevel(string level, string levelGo)
@@ -42,5 +53,13 @@ public static class GameManager
         AudioManager.instance.StopPlaying(level + "_Sound");
         AudioManager.instance.Play(levelGo + "_Sound");
         SceneManager.LoadScene(levelGo);
+        GameManager.currentLevel = SceneManager.GetActiveScene().name;
+    }
+
+    public static void TakePoints(int p)
+    {
+        Pointer pointer = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<Pointer>();
+        points += p;
+        pointer.SetPoints(points);
     }
 }

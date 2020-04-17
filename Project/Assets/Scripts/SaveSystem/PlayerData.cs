@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PlayerData
@@ -11,16 +12,19 @@ public class PlayerData
     public int points;
     public float[] position;
 
+    public string currentLevel;
 
     public PlayerData()
     {
         Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
+        currentLevel = SceneManager.GetActiveScene().name;
+
         if (player != null)
         {
             playerName = player.playerName;
             currentHealth = player.currentHealth;
-            points = player.points;
+            points = GameManager.points;
 
             position = new float[3];
             position[0] = player.transform.position.x;

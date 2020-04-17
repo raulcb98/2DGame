@@ -12,6 +12,11 @@ public class Pointer : MonoBehaviour
     public Text pointerText;
     private int points;
 
+    public void Start()
+    {
+        SetPoints(GameManager.points);
+    }
+
     // Set points text value
     public void SetPoints(int points) 
     {

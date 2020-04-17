@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-
     public string level;
     public string levelGo;
 
@@ -13,7 +12,5 @@ public class ChangeScene : MonoBehaviour
     {
         GameManager.LoadLevel(level, levelGo);
     }
-
-    
 
 }

@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     public GameObject deathEffect;
 
     // Private attributes
-    Player player;
     private float nextAttackTime = 0f;
 
 
@@ -24,7 +23,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         LoadData();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
 
@@ -43,7 +41,7 @@ public class Enemy : MonoBehaviour
     // Destroy the enemy
     void Die()
     {
-        player.TakePoints(enemyDeathReward);
+        GameManager.TakePoints(enemyDeathReward);
         FindObjectOfType<AudioManager>().Play("DeathEnemy");
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);

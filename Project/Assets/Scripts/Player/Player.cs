@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Defines player attributes.
@@ -11,12 +12,10 @@ public class Player : MonoBehaviour
     // Public attributes
     public int maxHealth = 100;
     public int currentHealth;
-    public int points = 0;
     public string playerName;
 
     // Private attributes
     HealthBar healthBar;
-    Pointer pointer;
     PlayerMovement playerMovement;
 
 
@@ -39,11 +38,9 @@ public class Player : MonoBehaviour
         }
 
         healthBar = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<HealthBar>();
-        pointer = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<Pointer>();
         playerMovement = GetComponent<PlayerMovement>();
 
         healthBar.SetHealth(currentHealth);
-        pointer.SetPoints(points);
     }
     
     public void TakeHealth(int health)
@@ -72,21 +69,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
-    public void TakePoints(int points)
-    {
-        this.points += points;
-        pointer.SetPoints(this.points);
-    }
-
-
-    public void SpendPoints(int spend)
-    {
-        points -= spend;
-        pointer.SetPoints(points);
-    }
-
-
     private void LoadData()
     {
         PlayerData playerData = SaveSystem.Load<PlayerData>();
@@ -94,13 +76,15 @@ public class Player : MonoBehaviour
         {
             playerName = playerData.playerName;
             currentHealth = playerData.currentHealth;
-            points = playerData.points;
 
-            Vector3 position;
-            position.x = playerData.position[0];
-            position.y = playerData.position[1];
-            position.z = playerData.position[2];
-            transform.position = position;
+            if (playerData.currentLevel.Equals(SceneManager.GetActiveScene().name)) {
+                Vector3 position;
+                position.x = playerData.position[0];
+                position.y = playerData.position[1];
+                position.z = playerData.position[2];
+                transform.position = position;
+            }
+
         }
     }
 }

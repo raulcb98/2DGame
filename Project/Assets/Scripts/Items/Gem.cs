@@ -21,8 +21,7 @@ public class Gem : MonoBehaviour
         if (collision.tag == "Player")
         {
             FindObjectOfType<AudioManager>().Play("CoinSound");
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<Player>().TakePoints(gemReward);
+            GameManager.TakePoints(gemReward);
         }
     }
 
